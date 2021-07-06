@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="What the hell name??" Height="500" Width="500" WindowStyle="ThreeDBorderWindow">
+    <Grid x:Name="MyWindow">
+        <Grid.Background>
+            <SolidColorBrush Color="#FFF0F0F0"/>
+        </Grid.Background>
+        <Button Name ="BtnSearch" Content="Search" HorizontalAlignment="Left" Margin="420,228,0,0" VerticalAlignment="Top" Width="50" Height="25" RenderTransformOrigin="0.708,4.4" />
+        <TextBlock  HorizontalAlignment="Left" Margin="20,228,0,0" TextWrapping="Wrap" Text="Selected directory:" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" TextDecorations="{x:Null}" FontStyle="Italic"/>
+        <TextBox Name ="direct" HorizontalAlignment="Left" Height="25" Margin="160,228,0,0" VerticalAlignment="Top" Width="245" Cursor="Arrow" FontFamily="Times New Roman" FontSize="16" Padding="0" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" TextWrapping="Wrap" />
+        <ListView Name="WindowSection" Margin="20,10,0,255.4" HorizontalAlignment="Left" Width="385" >
+            <ListView.BorderBrush>
+                <SolidColorBrush Color="#FFABADB3"/>
+            </ListView.BorderBrush>
+            <ListView.Background>
+                <SolidColorBrush Color="White"/>
+            </ListView.Background>
+        </ListView>
+        <TextBox Name="OutBox" HorizontalAlignment="Left" Height="177" Margin="20,273,0,0" VerticalAlignment="Top" Width="450" Cursor="Arrow" FontFamily="Times New Roman" FontSize="16" Padding="0,0,1,0" HorizontalScrollBarVisibility="Auto" />
+        <CheckBox Name ="CheckName" Content="*.dll" HorizontalAlignment="Left" Margin="420,110,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
+
+    </Grid>
+
+</Window>
