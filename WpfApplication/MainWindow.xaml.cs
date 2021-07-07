@@ -132,7 +132,6 @@ namespace WpfApplication
                 num = Filess(num, direct.Text);
             }
         }
-
         void BtnSearchClick(object sender, RoutedEventArgs e)
         {
             if (direct.Text == "")
@@ -142,22 +141,29 @@ namespace WpfApplication
             }
             else
             {
-                List<string> library = new List<string>();
-                library.AddRange(Directory.EnumerateFiles(direct.Text, "*.*", SearchOption.AllDirectories)
-                    .Where(s => s.EndsWith(".dll")));
-                foreach (var lib in library)
+               List<string> library = new List<string>();
+               library.AddRange(Directory.EnumerateFiles(direct.Text, "*.*", SearchOption.AllDirectories)
+                    .Where(s => s.EndsWith(".dll") || s.EndsWith(".DLL")));
+               foreach (var lib in library)
                 {
-                    Assembly assembly = typeof(MainWindow).Assembly;
-                    foreach (var type in assembly.GetTypes())
+                    try
                     {
-                        OutBox.Text += Environment.NewLine + type.Name;
-                        foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic))
+                        Assembly assembly = Assembly.LoadFile(lib);
+                        foreach (var type in assembly.GetTypes())
                         {
-                            if (method.IsFamily || method.IsPublic)
+                            OutBox.Text += Environment.NewLine + direct.Text;//type.Name;
+                            foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic))
                             {
-                                OutBox.Text += Environment.NewLine + "-" + method.Name;
+                                if (method.IsFamily || method.IsPublic)
+                                {
+                                    OutBox.Text += Environment.NewLine + "-" + method.Name;
+                                }
                             }
                         }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("It is not possible to load the library");
                     }
                 }
             }
