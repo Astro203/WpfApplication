@@ -151,7 +151,7 @@ namespace WpfApplication
                         Assembly assembly = Assembly.LoadFile(lib);
                         foreach (var type in assembly.GetTypes())
                         {
-                            OutBox.Text += Environment.NewLine + direct.Text;//type.Name;
+                            OutBox.Text += Environment.NewLine + type.Name;
                             foreach (MethodInfo method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic))
                             {
                                 if (method.IsFamily || method.IsPublic)
